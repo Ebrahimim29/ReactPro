@@ -1,6 +1,6 @@
 const Cars = ({make, model, year, color, price}) => {
     return (
-        <div className="bg-amber-100 p-4">
+        <div className="bg-amber-100 w-[60%] mt-4">
             <h2 className="mb-4">Car Information</h2>
             <ul>
                 <li>
