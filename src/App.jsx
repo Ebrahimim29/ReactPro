@@ -3,17 +3,23 @@ import Cars from "./Components/Cars";
 
 const App = () => {
 
-  const cars = [
-    {make:"Toyota",model:"Camry",year:2020,color:"Silver",price:"$30000"},
-    {make:"Bmw",model:"Ix6",year:2025,color:"Blue",price:"$15000"},
-    {make:"Benz",model:"S500",year:2008,color:"Black",price:"$45000"},
-    {make:"Mazeratti",model:"Coopeh",year:2012,color:"Red",price:"$40000"}
+  const initialCars = [
+    {name:"Toyota",model:"Camry",year:2020,color:"Silver",price:"$30000"},
+    {name:"Bmw",model:"Ix6",year:2025,color:"Blue",price:"$15000"},
+    {name:"Benz",model:"S500",year:2008,color:"Black",price:"$45000"},
+    {name:"Mazeratti",model:"Coopeh",year:2012,color:"Red",price:"$40000"}
   ]
 
+  const [cars, setCars] = useState(initialCars);
   const [text, setText] = useState("Hello");
 
   const ChangeText = () => {
     setText("Welcome To Site");
+  }
+
+  const handleDelete = (name) => {
+    const newCars = cars.filter((car)=>car.name !== name);
+    setCars(newCars);
   }
 
 
@@ -23,8 +29,9 @@ const App = () => {
       <button className="bg-green-500 hover:bg-amber-600 mt-4 p-4 rounded-2xl shadow-2xl" onClick={ChangeText}>Change</button>
 
       {cars.map((car)=>(
-        <Cars key={car.name} 
-        make={car.make} model={car.model} year={car.year} color={car.color} price={car.price}/>
+        <Cars key={car.name} {...car} handleDelete={()=>handleDelete(car.name)}
+        // make={car.make} model={car.model} year={car.year} color={car.color} price={car.price}
+        />
       ))}
     </div>
   );
