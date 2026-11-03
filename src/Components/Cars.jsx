@@ -1,4 +1,4 @@
-const Cars = ({make, model, year, color, price, handleDelete}) => {
+const Cars = ({name, model, year, color, price, handleDelete}) => {
 
     const handleChange = (e) => {
         console.log(e.target.value);        
@@ -9,7 +9,7 @@ const Cars = ({make, model, year, color, price, handleDelete}) => {
             <h2 className="mb-4">Car Information</h2>
             <ul>
                 <li>
-                    <strong>Make:</strong>{make}
+                    <strong>Name:</strong>{name}
                 </li>
                 <li>
                     <strong>Model:</strong>{model}

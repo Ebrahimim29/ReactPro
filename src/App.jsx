@@ -18,7 +18,14 @@ const App = () => {
   }
 
   const handleDelete = (name) => {
-    const newCars = cars.filter((car)=>car.name !== name);
+    setCars((prevCars) => {
+      const newCars = prevCars.filter((car)=>car.name !== name);
+      return newCars
+    });
+  }
+
+  const setSearch = (char) => {
+    const newCars = initialCars.filter((car)=>car.name.toLocaleLowerCase().includes(char.toLocaleLowerCase()));
     setCars(newCars);
   }
 
@@ -27,6 +34,8 @@ const App = () => {
     <div className="flex flex-col justify-center items-center gap-2">
       <h1 className="text-5xl mt-4">{text}</h1>
       <button className="bg-green-500 hover:bg-amber-600 mt-4 p-4 rounded-2xl shadow-2xl" onClick={ChangeText}>Change</button>
+
+      <input type="text" className="bg-red-300 rounded-2xl p-2" onChange={(e)=>setSearch(e.target.value)}/>
 
       {cars.map((car)=>(
         <Cars key={car.name} {...car} handleDelete={()=>handleDelete(car.name)}
