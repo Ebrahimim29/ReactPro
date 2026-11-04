@@ -1,5 +1,7 @@
 import { useState } from "react";
 import Cars from "./Components/Cars";
+import UserComponent from "./Components/UserComponent";
+import GuestComponent from "./Components/GuestComponent";
 
 const App = () => {
 
@@ -12,6 +14,8 @@ const App = () => {
 
   const [cars, setCars] = useState(initialCars);
   const [text, setText] = useState("Hello");
+
+  const [isLogined, setIsLogined] = useState(false);
 
   const ChangeText = () => {
     setText("Welcome To Site");
@@ -36,6 +40,12 @@ const App = () => {
       <button className="bg-green-500 hover:bg-amber-600 mt-4 p-4 rounded-2xl shadow-2xl" onClick={ChangeText}>Change</button>
 
       <input type="text" className="bg-red-300 rounded-2xl p-2" onChange={(e)=>setSearch(e.target.value)}/>
+
+      <button onClick={() => setIsLogined(!isLogined)} 
+      className="text-green-600 rounded p-4 hover:text-red-400 hover:bg-amber-400">
+        {isLogined ? "Logout" : "Login"}
+      </button>
+      {isLogined ? <UserComponent/> : <GuestComponent/>}
 
       {cars.map((car)=>(
         <Cars key={car.name} {...car} handleDelete={()=>handleDelete(car.name)}
