@@ -1,8 +1,26 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const UserComponent = () => {
 
     const [age, setAge] = useState(20);
+
+    useEffect(() => {
+        // Mount
+        console.log("Send A Request To The Server");
+        
+        return () => {
+            // UnMount
+            console.log("Hoping To Meet You");            
+        }
+    }, []);
+
+    useEffect(() => {
+        // Updating
+        console.log(age);        
+        if (age === 30) {
+            console.log("Age Is 30");            
+        }
+    }, [age])
 
     return (
         <div className="flex flex-col justify-center items-center bg-amber-300">
