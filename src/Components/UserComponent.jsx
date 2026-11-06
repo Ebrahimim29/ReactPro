@@ -7,10 +7,19 @@ const UserComponent = () => {
     useEffect(() => {
         // Mount
         console.log("Send A Request To The Server");
-        
+
+        const handleClick = () => {
+            console.log("Age is 20");            
+        }
+
+        const element = document.getElementById("age");
+        element?.addEventListener("click", handleClick);
+                
         return () => {
             // UnMount
-            console.log("Hoping To Meet You");            
+            console.log("Hoping To Meet You");  
+            // CleanUp
+            element?.removeEventListener("click", handleClick);
         }
     }, []);
 
