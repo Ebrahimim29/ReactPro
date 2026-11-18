@@ -2,6 +2,7 @@ import { useState } from "react";
 import Cars from "./Components/Cars";
 import UserComponent from "./Components/UserComponent";
 import GuestComponent from "./Components/GuestComponent";
+import CounterExercise from "./Components/CounterExercise";
 
 const App = () => {
 
@@ -52,6 +53,8 @@ const App = () => {
         // make={car.make} model={car.model} year={car.year} color={car.color} price={car.price}
         />
       ))}
+
+      <CounterExercise/>
     </div>
   );
 };
