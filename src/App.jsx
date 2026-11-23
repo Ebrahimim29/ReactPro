@@ -3,7 +3,8 @@ import Cars from "./Components/Cars";
 import UserComponent from "./Components/UserComponent";
 import GuestComponent from "./Components/GuestComponent";
 import CounterExercise from "./Components/CounterExercise";
-import UseRef from "./Components/UseRef";
+import UseRef1 from "./Components/UseRef1";
+import UseRef2 from "./Components/UseRef2";
 
 const App = () => {
 
@@ -56,7 +57,8 @@ const App = () => {
       ))}
 
       <CounterExercise/>
-      <UseRef/>
+      <UseRef1/>
+      <UseRef2/>
     </div>
   );
 };
