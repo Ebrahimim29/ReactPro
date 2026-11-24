@@ -5,6 +5,7 @@ import GuestComponent from "./Components/GuestComponent";
 import CounterExercise from "./Components/CounterExercise";
 import UseRef1 from "./Components/UseRef1";
 import UseRef2 from "./Components/UseRef2";
+import UseReducer from "./Components/UseReducer";
 
 const App = () => {
 
@@ -59,6 +60,7 @@ const App = () => {
       <CounterExercise/>
       <UseRef1/>
       <UseRef2/>
+      <UseReducer/>
     </div>
   );
 };
