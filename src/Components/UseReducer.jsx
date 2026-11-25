@@ -1,10 +1,31 @@
-import { useEffect, useState } from "react";
+import { useEffect, useReducer, useState } from "react";
+
+const initialState = {
+    data: null,
+    loading: true,
+    error: null
+}
+
+const dataReducer = (state, action) => {
+    switch (action.type) {
+        case "FETCH_START":
+            return {loading: true, data: null, error: null};
+        case "FETCH_SUCCESS":
+            return {loading: false, data: action.payload, error: null};
+        case "FETCH_ERROR":
+            return {loading: false, data: null, error: error.payload};
+        default:
+            return state;
+}
+}
 
 const UseReducer = () => {
 
-    const [data, setData] = useState(null);
-    const [loading, setLoading] = useState(true);
-    const [error, setError] = useState(null);
+    // const [data, setData] = useState(null);
+    // const [loading, setLoading] = useState(true);
+    // const [error, setError] = useState(null);
+
+    const [state, dispatch] = useReducer(dataReducer, initialState)
 
     useEffect(()=>{
         setLoading(true);
@@ -47,7 +68,22 @@ const UseReducer = () => {
                 {data.map((user) => (
                     <div key={user.id} className="bg-amber-300 rounded-xl shadow-md overflow-hidden hover:shadow-lg transition-shadow
                     duration-300 border border-gray-100">
-                        {/* part 5 section 5 4:26 */}
+                        <div className="bg-gradient-to-r from-indigo-600 to-purple-500 py-4 px-6">
+                            <h2 className="text-xl font-semibold text-white">{user.name}</h2>
+                            <p className="text-indigo-100">{user.username}</p>
+                        </div>
+                        <div className="p-6 space-y-3">
+                            <div className="flex items-center text-gray-700">
+                                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-indigo-500 mr-2"></svg>
+                                <span>{user.email}</span>
+                            </div>
+                            <div className="flex items-center text-gray-700">
+                                <span>{user.phone}</span>
+                            </div>
+                            <div className="flex items-center text-gray-700">
+                                <span>{user.website}</span>
+                            </div>
+                        </div>
                     </div>
                 ))}
             </div>
