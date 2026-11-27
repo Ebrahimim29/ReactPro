@@ -1,0 +1,57 @@
+const Posts = () => {
+    const [data, setData] = useState(null);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
+
+    useEffect(() => {
+        setLoading(true);
+        fetch("https://jsonplaceholder.typicode.com/posts")
+            .then((res) => {
+                if (!res.ok) throw new Error("Error in Get Data ...")
+                return res.json();
+            })
+            .then((data) => {
+                setData(data);
+                setLoading(false);
+            })
+            .catch((err) => {
+                setError(err.message);
+                setLoading(false)
+            })
+    }, [])
+
+    if (loading) return <div className="flex justify-center items-center h-auto">
+        <span className="text-blue-600 font-medium text-lg">در حال دریافت اطلاعات...</span>
+    </div>
+
+    if (error) return <div className="bg-red-400 text-red-900 p-4 rounded-lg text-center">
+        خطا : {error}
+    </div>
+
+    return (
+        <div>
+
+            <h2 className="text-2xl font-bold text-gray-800 mb-6 text-center">پست های اخیر</h2>
+            <div className="grid gap-6 grid-cols-1 md:grid-cols-2">
+                {data.map((post) => (
+                    <div key={post.id} className="bg-white border-gray-200 rounded shadow-sm overflow-hidden hover:shadow-md transition-shadow duration-300">
+                        <div className="bg-gradient-to-r from-orange-500 to-pink-500"></div>
+                        <div className="p-5">
+                            <h3 className="font-bold text-lg text-gray-800 mb-3 line-clamp-1">{post.title}</h3>
+                            <p className="text-gray-600 text-sm mb-4 line-clamp-3">{post.body}</p>
+                            <div className="flex justify-between items-center">
+                                <span className="bg-orange-200 text-orange-800 text-xs px-2 py-1 rounded">پست # {post.id}</span>
+                                <button className="text-sm text-white bg-gradient-to-r from-orange-500 to-pink-500 px-3 py-1 rounded
+                                hover:opacity-90 transition">ادامه مطلب</button>
+                                {/* دقیقه 4:50 بخش 5 جلسه 6 */}
+                            </div>
+                        </div>
+                    </div>
+                ))}
+            </div>
+        </div>
+    );
+};
+
+
+export default Posts;

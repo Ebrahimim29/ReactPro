@@ -6,6 +6,7 @@ import CounterExercise from "./Components/CounterExercise";
 import UseRef1 from "./Components/UseRef1";
 import UseRef2 from "./Components/UseRef2";
 import UseReducer from "./Components/UseReducer";
+import PersonalHook from "./Hooks/PersonalHook";
 
 const App = () => {
   const initialCars = [
@@ -70,6 +71,7 @@ const App = () => {
       <UseRef1 />
       <UseRef2 />
       <UseReducer />
+      <PersonalHook/>
     </div>
   );
 };
