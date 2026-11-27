@@ -8,59 +8,68 @@ import UseRef2 from "./Components/UseRef2";
 import UseReducer from "./Components/UseReducer";
 
 const App = () => {
-
   const initialCars = [
-    {name:"Toyota",model:"Camry",year:2020,color:"Silver",price:"$30000"},
-    {name:"Bmw",model:"Ix6",year:2025,color:"Blue",price:"$15000"},
-    {name:"Benz",model:"S500",year:2008,color:"Black",price:"$45000"},
-    {name:"Mazeratti",model:"Coopeh",year:2012,color:"Red",price:"$40000"}
-  ]
+    { name: "Toyota", model: "Camry", year: 2020, color: "Silver", price: "$30000" },
+    { name: "Bmw", model: "Ix6", year: 2025, color: "Blue", price: "$15000" },
+    { name: "Benz", model: "S500", year: 2008, color: "Black", price: "$45000" },
+    { name: "Mazeratti", model: "Coopeh", year: 2012, color: "Red", price: "$40000" },
+  ];
 
   const [cars, setCars] = useState(initialCars);
   const [text, setText] = useState("Hello");
-
   const [isLogined, setIsLogined] = useState(false);
 
   const ChangeText = () => {
     setText("Welcome To Site");
-  }
+  };
 
   const handleDelete = (name) => {
-    setCars((prevCars) => {
-      const newCars = prevCars.filter((car)=>car.name !== name);
-      return newCars
-    });
-  }
+    setCars((prevCars) => prevCars.filter((car) => car.name !== name));
+  };
 
   const setSearch = (char) => {
-    const newCars = initialCars.filter((car)=>car.name.toLocaleLowerCase().includes(char.toLocaleLowerCase()));
+    const newCars = initialCars.filter((car) =>
+      car.name.toLocaleLowerCase().includes(char.toLocaleLowerCase())
+    );
     setCars(newCars);
-  }
-
+  };
 
   return (
     <div className="flex flex-col justify-center items-center gap-2">
       <h1 className="text-5xl mt-4">{text}</h1>
-      <button className="bg-green-500 hover:bg-amber-600 mt-4 p-4 rounded-2xl shadow-2xl" onClick={ChangeText}>Change</button>
+      <button
+        className="bg-green-500 hover:bg-amber-600 mt-4 p-4 rounded-2xl shadow-2xl"
+        onClick={ChangeText}
+      >
+        Change
+      </button>
 
-      <input type="text" className="bg-red-300 rounded-2xl p-2" onChange={(e)=>setSearch(e.target.value)}/>
+      <input
+        type="text"
+        className="bg-red-300 rounded-2xl p-2"
+        onChange={(e) => setSearch(e.target.value)}
+      />
 
-      <button onClick={() => setIsLogined(!isLogined)} 
-      className="text-green-600 rounded p-4 hover:text-red-400 hover:bg-amber-400">
+      <button
+        onClick={() => setIsLogined(!isLogined)}
+        className="text-green-600 rounded p-4 hover:text-red-400 hover:bg-amber-400"
+      >
         {isLogined ? "Logout" : "Login"}
       </button>
-      {isLogined ? <UserComponent/> : <GuestComponent/>}
+      {isLogined ? <UserComponent /> : <GuestComponent />}
 
-      {cars.map((car)=>(
-        <Cars key={car.name} {...car} handleDelete={()=>handleDelete(car.name)}
-        // make={car.make} model={car.model} year={car.year} color={car.color} price={car.price}
+      {cars.map((car) => (
+        <Cars
+          key={car.name}
+          {...car}
+          handleDelete={() => handleDelete(car.name)}
         />
       ))}
 
-      <CounterExercise/>
-      <UseRef1/>
-      <UseRef2/>
-      <UseReducer/>
+      <CounterExercise />
+      <UseRef1 />
+      <UseRef2 />
+      <UseReducer />
     </div>
   );
 };
