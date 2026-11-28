@@ -1,24 +1,7 @@
-const Posts = () => {
-    const [data, setData] = useState(null);
-    const [loading, setLoading] = useState(true);
-    const [error, setError] = useState(null);
+import { useFetchData } from "./fetchData";
 
-    useEffect(() => {
-        setLoading(true);
-        fetch("https://jsonplaceholder.typicode.com/posts")
-            .then((res) => {
-                if (!res.ok) throw new Error("Error in Get Data ...")
-                return res.json();
-            })
-            .then((data) => {
-                setData(data);
-                setLoading(false);
-            })
-            .catch((err) => {
-                setError(err.message);
-                setLoading(false)
-            })
-    }, [])
+const Posts = () => {
+    const {data, loading, error} = useFetchData("https://jsonplaceholder.typicode.com/posts");
 
     if (loading) return <div className="flex justify-center items-center h-auto">
         <span className="text-blue-600 font-medium text-lg">در حال دریافت اطلاعات...</span>
@@ -43,7 +26,6 @@ const Posts = () => {
                                 <span className="bg-orange-200 text-orange-800 text-xs px-2 py-1 rounded">پست # {post.id}</span>
                                 <button className="text-sm text-white bg-gradient-to-r from-orange-500 to-pink-500 px-3 py-1 rounded
                                 hover:opacity-90 transition">ادامه مطلب</button>
-                                {/* دقیقه 4:50 بخش 5 جلسه 6 */}
                             </div>
                         </div>
                     </div>

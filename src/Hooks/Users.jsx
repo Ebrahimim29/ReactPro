@@ -1,27 +1,8 @@
-import { useEffect, useState } from "react";
+import { useFetchData } from "./fetchData";
 
 const Users = () => {
 
-    const [data, setData] = useState(null);
-    const [loading, setLoading] = useState(true);
-    const [error, setError] = useState(null);
-
-    useEffect(()=>{
-        setLoading(true);
-        fetch("https://jsonplaceholder.typicode.com/users")
-        .then((res)=>{
-            if(!res.ok) throw new Error("Error in Get Data ...")
-            return res.json();
-        })
-        .then((data)=>{
-            setData(data);
-            setLoading(false);
-        })
-        .catch((err)=>{
-            setError(err.message);
-            setLoading(false)
-        })
-    }, [])
+    const {data, loading, error} = useFetchData("https://jsonplaceholder.typicode.com/users")
 
     if(loading) return <div className="flex justify-center items-center h-auto">
         <span className="text-blue-600 font-medium text-lg">در حال دریافت اطلاعات...</span>
